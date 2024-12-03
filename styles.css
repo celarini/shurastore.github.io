@@ -4,35 +4,27 @@
     box-sizing: border-box;
 }
 
+
 body, html {
     height: 100%;
     overflow: hidden;
-    font-family: 'Electrolize', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
+
 
 .background {
     height: 100%;
     width: 100%;
-    background: linear-gradient(to right, #000, #222), radial-gradient(at top left, #ff00ff, #00ffff);
+    background: linear-gradient(135deg, #1a001a, #4b0082);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: white;
     position: relative;
 }
 
-.background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('path/to/circuit_texture.png') repeat;
-    opacity: 0.5;
-    z-index: 1;
-}
 
 .content {
     display: flex;
@@ -43,47 +35,40 @@ body, html {
     z-index: 10;
 }
 
+
 h1 {
     font-size: 4rem;
     margin-bottom: 20px;
-    color: #ff00ff;
-    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    background: linear-gradient(to right, #8a2be2, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
 
 h2 {
     font-size: 2rem;
     margin-bottom: 30px;
     color: #fff;
-    font-family: 'YourFavoriteFont', sans-serif;
 }
+
 
 .btn {
-    background: #000;
-    border: 2px solid #ff00ff;
-    color: #ff00ff;
+    background: linear-gradient(to right, #8a2be2, #ff00ff);
+    color: white;
     padding: 15px 30px;
-    border-radius: 20px;
-    font-weight: bold;
-    position: relative;
-    overflow: hidden;
     text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
 }
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, #ff00ff, #00ffff);
-    transform: scaleX(0);
-    transition: transform 0.3s;
+
+.btn:hover {
+    transform: scale(1.1);
 }
 
-.btn:hover::before {
-    transform: scaleX(1);
-}
 
 footer {
     position: fixed;
@@ -94,27 +79,50 @@ footer {
     font-size: 0.9rem;
 }
 
-.neon-lights {
+
+/* shura */
+.background::before {
+    content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, #00ff00, transparent);
-    animation: neon 5s infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 1;
+    animation: backgroundPulse 5s infinite alternate;
 }
 
-@keyframes neon {
-    0% { opacity: 0.2; }
-    50% { opacity: 0.5; }
-    100% { opacity: 0.2; }
+
+@keyframes backgroundPulse {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0.5;
+    }
 }
 
-.glitch-text {
-    animation: glitch 1s infinite;
+
+
+.background::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.3) 150%);
+    animation: rotate 20s linear infinite;
+    z-index: 2;
 }
 
-@keyframes glitch {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-10px, 0); }
-    50% { transform: translate(0, -10px); }
-    75% { transform: translate(10px, 0); }
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
